@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kwa Muthuri Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;600;700;800&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #1a1a1a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      background: #f5f0e8;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    /* ── TOP HEADER ── */
+    .header {
+      background: #1b4a2e;
+      padding: 36px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Crect x='5' y='5' width='20' height='16' rx='2' fill='none' stroke='%23ffffff10' stroke-width='1.5'/%3E%3Cline x1='5' y1='21' x2='25' y2='21' stroke='%23ffffff10' stroke-width='1.5'/%3E%3Ccircle cx='10' cy='26' r='2' fill='%23ffffff10'/%3E%3Ccircle cx='20' cy='26' r='2' fill='%23ffffff10'/%3E%3C/svg%3E");
+      background-size: 60px 60px;
+      opacity: 1;
+    }
+
+    .header h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 2rem;
+      color: #ffffff;
+      letter-spacing: 2px;
+      line-height: 1;
+      position: relative;
+    }
+
+    .header h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 3.8rem;
+      color: #f0a500;
+      letter-spacing: 4px;
+      line-height: 1;
+      position: relative;
+    }
+
+    .header h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: #ffffff;
+      position: relative;
+      margin-top: 4px;
+    }
+
+    .header-line {
+      width: 60px;
+      height: 3px;
+      background: #f0a500;
+      margin: 10px auto 0;
+      position: relative;
+    }
+
+    /* ── CART ICON ── */
+    .cart-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: -28px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .cart-icon {
+      width: 62px;
+      height: 62px;
+      background: #f0a500;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid #f5f0e8;
+      box-shadow: 0 0 0 3px #f0a500;
+    }
+
+    .cart-icon svg {
+      width: 30px;
+      height: 30px;
+      fill: #1b4a2e;
+    }
+
+    /* ── BODY ── */
+    .body {
+      padding: 16px 24px 28px;
+      background: #f5f0e8;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333;
+      font-weight: 500;
+      margin: 8px 0 20px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      border: 2px solid #2e7d4f;
+      border-radius: 50px;
+      padding: 10px 16px;
+      margin-bottom: 14px;
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      gap: 14px;
+    }
+
+    .btn:hover {
+      background: #2e7d4f;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(46,125,79,0.3);
+    }
+
+    .btn:hover .btn-label,
+    .btn:hover .btn-number {
+      color: #ffffff;
+    }
+
+    .btn-icon {
+      width: 42px;
+      height: 42px;
+      background: #2e7d4f;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .btn-icon svg {
+      width: 22px;
+      height: 22px;
+      fill: white;
+    }
+
+    .btn-divider {
+      width: 2px;
+      height: 36px;
+      background: #2e7d4f;
+      flex-shrink: 0;
+    }
+
+    .btn-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #2e7d4f;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .btn-number {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: #1a1a1a;
+      letter-spacing: 1px;
+    }
+
+    /* ── HELPLINE SECTION ── */
+    .helpline {
+      background: #1b4a2e;
+      padding: 28px 24px 28px;
+      text-align: center;
+      position: relative;
+    }
+
+    .headset-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: -44px;
+      margin-bottom: 10px;
+    }
+
+    .headset-icon {
+      width: 56px;
+      height: 56px;
+      background: #f0a500;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid #1b4a2e;
+    }
+
+    .headset-icon svg {
+      width: 26px;
+      height: 26px;
+      fill: #1b4a2e;
+    }
+
+    .helpline-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .helpline-line {
+      flex: 1;
+      height: 1px;
+      background: #f0a500;
+      max-width: 50px;
+    }
+
+    .helpline h2 {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 3px;
+    }
+
+    .helpline p {
+      font-size: 0.8rem;
+      color: #f0a500;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .helpline .btn {
+      border-color: #ffffff;
+    }
+
+    .helpline .btn:hover {
+      background: #ffffff;
+    }
+
+    .helpline .btn:hover .btn-label {
+      color: #1b4a2e;
+    }
+
+    .helpline .btn:hover .btn-number {
+      color: #1b4a2e;
+    }
+
+    .helpline .btn-icon {
+      background: #2e7d4f;
+    }
+
+    .helpline .btn-divider {
+      background: #ffffff;
+    }
+
+    .helpline .btn-label {
+      color: #f0a500;
+    }
+
+    .helpline .btn-number {
+      color: #ffffff;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: #1b4a2e;
+      padding: 16px 24px 24px;
+      text-align: center;
+      border-top: 1px solid #2e7d4f;
+    }
+
+    .footer p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: #f5f0e8;
+    }
+
+    .footer strong {
+      display: block;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-size: 1rem;
+      color: #f0a500;
+      letter-spacing: 2px;
+      margin-top: 2px;
+    }
+
+    .heart {
+      color: #f0a500;
+      font-size: 1.2rem;
+      margin-top: 8px;
+    }
+
+    .footer-line {
+      width: 60px;
+      height: 2px;
+      background: #f0a500;
+      margin: 8px auto 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>PLACE YOUR</h1>
+    <h2>ORDER</h2>
+    <h3>with us</h3>
+    <div class="header-line"></div>
+  </div>
+
+  <!-- CART ICON -->
+  <div class="cart-wrap">
+    <div class="cart-icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+    <p class="subtitle">You can place your order<br/>through call or WhatsApp</p>
+
+    <!-- CALL BUTTON -->
+    <a href="tel:0745833432" class="btn">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div class="btn-divider"></div>
+      <div class="btn-text">
+        <span class="btn-label">CALL</span>
+        <span class="btn-number">0745833432</span>
+      </div>
+    </a>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/254745833432" target="_blank" class="btn">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.011 22l4.975-1.301A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 11.999 2zm.001 18c-1.66 0-3.207-.476-4.516-1.298l-.324-.193-3.359.879.894-3.26-.21-.336A7.956 7.956 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+      </div>
+      <div class="btn-divider"></div>
+      <div class="btn-text">
+        <span class="btn-label">WHATSAPP</span>
+        <span class="btn-number">0745833432</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- HELPLINE -->
+  <div class="helpline">
+    <div class="headset-wrap">
+      <div class="headset-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 1C7.03 1 3 5.03 3 10v4a3 3 0 003 3h1V10a6 6 0 1112 0v7h1a3 3 0 003-3v-4c0-4.97-4.03-9-9-9zm-4 10H7v4h1v-4zm10 0h-1v4h1v-4z"/></svg>
+      </div>
+    </div>
+
+    <div class="helpline-title-row">
+      <div class="helpline-line"></div>
+      <h2>HELPLINE</h2>
+      <div class="helpline-line"></div>
+    </div>
+    <p>We are here to help you!</p>
+
+    <!-- HELPLINE CALL -->
+    <a href="tel:0112270392" class="btn">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div class="btn-divider"></div>
+      <div class="btn-text">
+        <span class="btn-label">CALL</span>
+        <span class="btn-number">0112270392</span>
+      </div>
+    </a>
+
+    <!-- HELPLINE WHATSAPP -->
+    <a href="https://wa.me/254112270392" target="_blank" class="btn">
+      <div class="btn-icon">
+        <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.011 22l4.975-1.301A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.522 2 11.999 2zm.001 18c-1.66 0-3.207-.476-4.516-1.298l-.324-.193-3.359.879.894-3.26-.21-.336A7.956 7.956 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+      </div>
+      <div class="btn-divider"></div>
+      <div class="btn-text">
+        <span class="btn-label">WHATSAPP</span>
+        <span class="btn-number">0112270392</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Thank you for choosing</p>
+    <strong>KWA MUTHURI SHOP</strong>
+    <div class="heart">♥</div>
+    <div class="footer-line"></div>
+  </div>
+
+</div>
+
+</body>
+</html>
